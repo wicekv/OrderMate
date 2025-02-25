@@ -1,4 +1,6 @@
 ﻿using OrderMate.Infrastructure.Data;
+using OrderMate.Infrastructure.Data.Queries.Users.List;
+using OrderMate.UseCases.Users.List;
 
 
 namespace OrderMate.Infrastructure;
@@ -15,7 +17,8 @@ public static class InfrastructureServiceExtensions
      options.UseSqlite(connectionString));
 
     services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>))
-           .AddScoped(typeof(IReadRepository<>), typeof(EfRepository<>));
+           .AddScoped(typeof(IReadRepository<>), typeof(EfRepository<>))
+           .AddScoped<IGetUsersQueryService, GetUsersQueryService>();
 
 
     logger.LogInformation("{Project} services registered", "Infrastructure");
