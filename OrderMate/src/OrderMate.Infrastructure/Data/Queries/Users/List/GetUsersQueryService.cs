@@ -12,7 +12,7 @@ public class GetUsersQueryService(AppDbContext context) : IGetUsersQueryService
 
     if (totalCount == 0)
     {
-      return new PagedResult<List<UserDto>>(new PagedInfo(pageNumber, pageSize, 0, 0), new List<UserDto>());
+      return new PagedResult<List<UserDto>>(new PagedInfo(pageNumber, pageSize, 0, 0), []);
     }
 
     long totalPages = (pageSize > 0) ? (long)Math.Ceiling((double)totalCount / pageSize) : 0;
