@@ -2,18 +2,18 @@
 
 namespace OrderMate.Web.v1.Users.Create;
 
-public sealed class CreateUserEndpoint(IMediator _mediator) 
+public sealed class CreateUserEndpoint(IMediator _mediator)
   : Endpoint<CreateUserRequest, CreateUserResponse>
 {
   public override void Configure()
   {
-    Post("/api/users");
+    Post(CreateUserRequest.Route);
     AllowAnonymous();
     Summary(s =>
     {
       s.Summary = "Creating a new user";
       s.Description = "Endpoint for creating a new user with the specified data.";
-      s.ExampleRequest = new CreateUserRequest("John Doe", "john.doe@example.com");
+      s.ExampleRequest = new CreateUserRequest { Name = "John Doe", Email = "john.doe@example.com" };
     });
   }
 
@@ -21,9 +21,9 @@ public sealed class CreateUserEndpoint(IMediator _mediator)
   {
     var result = await _mediator.Send(new CreateUserCommand(request.Name, request.Email), cancellationToken);
 
-    if(result.Status == ResultStatus.Invalid)
+    if (result.Status == ResultStatus.Invalid)
     {
-      foreach(var error in result.ValidationErrors)
+      foreach (var error in result.ValidationErrors)
       {
         AddError(error.ErrorMessage);
       }
@@ -32,7 +32,7 @@ public sealed class CreateUserEndpoint(IMediator _mediator)
       return;
     }
 
-    if(result.IsSuccess)
+    if (result.IsSuccess)
     {
       Response = new CreateUserResponse(result.Value, request.Name!);
       return;
