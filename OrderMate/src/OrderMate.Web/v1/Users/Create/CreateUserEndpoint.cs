@@ -29,11 +29,13 @@ public sealed class CreateUserEndpoint(IMediator _mediator)
       }
 
       await SendErrorsAsync(cancellation: cancellationToken);
+      return;
     }
 
     if(result.IsSuccess)
     {
       Response = new CreateUserResponse(result.Value, request.Name!);
+      return;
     }
 
   }
