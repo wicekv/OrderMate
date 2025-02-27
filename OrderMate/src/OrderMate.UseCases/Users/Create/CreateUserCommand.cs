@@ -13,7 +13,7 @@ public sealed class CreateUserCommandHandler(IRepository<User> repository) : ICo
   {
     var existingUser = await repository.FirstOrDefaultAsync(new UserByEmailSpecification(request.Email), cancellationToken);
 
-    if(existingUser != null)
+    if (existingUser != null)
     {
       return Result.Invalid(new ValidationError(UserErrors.UserUniq));
     }

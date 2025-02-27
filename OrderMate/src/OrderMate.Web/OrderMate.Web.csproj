@@ -28,8 +28,4 @@
     <ProjectReference Include="..\OrderMate.UseCases\OrderMate.UseCases.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="v1\Products\" />
-  </ItemGroup>
-
 </Project>

@@ -4,4 +4,5 @@ public static class ProductErrors
 {
   public const string ProductNotFound = "Produkt nie istnieje.";
   public const string ProductsNotInStock = "Niewystarczająca liczba produktów w magazynie";
+  public const string CategoryNotFound = "Niepoprawna kategoria produktu.";
 }
