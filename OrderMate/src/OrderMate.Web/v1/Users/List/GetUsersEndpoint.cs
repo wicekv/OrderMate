@@ -6,7 +6,7 @@ public sealed class GetUsersEndpoint(IMediator _mediator) : Endpoint<GetUsersReq
 {
   public override void Configure()
   {
-    Get("/api/users");
+    Get(GetUsersRequest.Route);
     AllowAnonymous();
     Summary(s =>
     {
@@ -20,7 +20,7 @@ public sealed class GetUsersEndpoint(IMediator _mediator) : Endpoint<GetUsersReq
   {
     var result = await _mediator.Send(new GetUsersQuery(request.PageNumber, request.PageSize));
 
-    if(result.IsSuccess)
+    if (result.IsSuccess)
     {
       var mappedUsers = result.Value.Select(u => new GetUsersResponse(u.Name, u.Email)).ToList();
 
