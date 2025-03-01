@@ -7,7 +7,7 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
 {
   public void Configure(EntityTypeBuilder<Order> builder)
   {
-    builder.ToTable("Orders");
+    builder.ToTable("Orders", "order");
     builder.HasKey(o => o.Id);
 
     builder.Property(o => o.UserId)
@@ -19,7 +19,7 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
 
     builder.HasMany(o => o.OrderItems)
         .WithOne()
-        .HasForeignKey(oi => oi.Id)
+        .HasForeignKey(oi => oi.OrderId)
         .OnDelete(DeleteBehavior.Cascade);
   }
 }
