@@ -16,8 +16,8 @@ public class User : EntityBase, IAggregateRoot
 
   public User(string name, string email, UserRole role)
   {
-    Name = Guard.Against.NullOrEmpty(name, nameof(name));
-    Email = Guard.Against.NullOrEmpty(email, nameof(email));
+    Name = Guard.Against.NullOrWhiteSpace(name, nameof(name));
+    Email = Guard.Against.NullOrWhiteSpace(email, nameof(email));
     Role = Guard.Against.Null(role, nameof(role));
   }
 
