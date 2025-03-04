@@ -33,6 +33,10 @@ public static class FakeProductFactory
     {
       typeof(Product).GetProperty(nameof(Product.Id))!.SetValue(product, id.Value);
     }
+    else
+    {
+      typeof(Product).GetProperty(nameof(Product.Id))!.SetValue(product, _faker.Random.Int(1, 1000));
+    }
 
     return product;
   }

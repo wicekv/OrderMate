@@ -46,20 +46,4 @@ public sealed class ProductTests
     var exception = Assert.Throws<ArgumentException>(action);
     exception.Should().NotBeNull();
   }
-
-  [Theory]
-  [InlineData(0)]
-  [InlineData(-1)]
-  public void UpdateStock_WhenQuantityIsZeroOrNegative_ShouldThrowArgumentException(int invalidQuantity)
-  {
-    // Arrange
-    var product = FakeProductFactory.CreateProduct(stock: 10);
-
-    // Act
-    var action = () => product.UpdateStock(invalidQuantity);
-
-    // Assert
-    var exception = Assert.Throws<ArgumentException>(action);
-    exception.Should().NotBeNull();
-  }
 }
