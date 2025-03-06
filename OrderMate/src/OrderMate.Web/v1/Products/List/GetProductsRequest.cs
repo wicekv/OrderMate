@@ -4,11 +4,11 @@ public class GetProductsRequest
 {
   public const string Route = "/api/products";
 
-  public int Page { get; set; } = 1;
-  public int PageSize { get; set; } = 10;
-  public string? SortBy { get; set; }
-  public string? OrderBy { get; set; } = "asc";
-  public string? Category { get; set; }
-  public decimal? PriceFrom { get; set; }
-  public decimal? PriceTo { get; set; }
+  public int? Page { get; init; }
+  public int? PageSize { get; init; }
+  public string? SortBy { get; init; }
+  public string? OrderBy { get; init; }
+  public string? Category { get; init; }
+  public decimal? PriceFrom { get; init; }
+  public decimal? PriceTo { get; init; }
 }

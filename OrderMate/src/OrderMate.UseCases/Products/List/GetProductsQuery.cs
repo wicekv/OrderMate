@@ -24,8 +24,9 @@ public sealed class GetProductsQueryHandler(IReadRepository<Product> productRepo
             .ToList();
 
     var pageSize = request.filter.PageSize ?? totalCount;
+    var page = request.filter.Page ?? 1;
 
-    var pagedInfo = new PagedInfo(request.filter.Page, pageSize, (long)Math.Ceiling((double)totalCount / pageSize), totalCount);
+    var pagedInfo = new PagedInfo(page, pageSize, (long)Math.Ceiling((double)totalCount / pageSize), totalCount);
 
     return new PagedResult<List<ProductDto>>(pagedInfo, productDtos);
   }

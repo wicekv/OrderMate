@@ -2,7 +2,7 @@
 
 public record BaseFilter
 {
-  public int Page { get; init; }
+  public int? Page { get; init; }
   public int? PageSize { get; init; }
   public string? SortBy { get; init; }
   public string? OrderBy { get; init; }
