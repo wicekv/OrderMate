@@ -1,5 +1,6 @@
 ﻿using OrderMate.Core.Aggregates.OrderAggregate;
 using OrderMate.Core.Aggregates.UserAggregate.Enums;
+using OrderMate.Core.Aggregates.UserAggregate.ErrorMessages;
 
 namespace OrderMate.Core.Aggregates.Users;
 
@@ -25,5 +26,25 @@ public class User : EntityBase, IAggregateRoot
   {
     Guard.Against.Null(order, nameof(order));
     _orders.Add(order);
+  }
+
+  public void ChangeEmail(string email)
+  {
+    Email = Guard.Against.NullOrWhiteSpace(email, nameof(email));
+  }
+
+  public void ChangeName(string name)
+  {
+    Name = Guard.Against.NullOrWhiteSpace(name, nameof(name));
+  }
+
+  public void ChangeRole(int roleId)
+  {
+    var newRole = Guard.Against.Null(UserRole.FromValue(roleId), nameof(roleId));
+
+    if (Role == newRole)
+      return;
+
+    Role = UserRole.FromValue(roleId);
   }
 }

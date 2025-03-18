@@ -23,4 +23,26 @@ public class Product : EntityBase, IAggregateRoot
   {
     Stock = Guard.Against.Negative(Stock - quantity, nameof(quantity));
   }
+
+  /// <summary>
+  /// Update of product name, price and category information
+  /// </summary>
+  /// <param name="name"></param>
+  /// <param name="price"></param>
+  /// <param name="categoryId"></param>
+  public void UpdateProduct(string name, decimal price, int categoryId)
+  {
+    Name = Guard.Against.NullOrEmpty(name, nameof(name));
+    Price = Guard.Against.NegativeOrZero(price, nameof(price));
+    Category = Guard.Against.Null(ProductCategory.FromValue(categoryId), nameof(categoryId));
+  }
+
+  /// <summary>
+  /// Set the new stock
+  /// </summary>
+  /// <param name="stock"></param>
+  public void SetStock(int stock)
+  {
+    Stock = Guard.Against.Negative(stock, nameof(stock));
+  }
 }
