@@ -1,4 +1,5 @@
-﻿using OrderMate.Core.Aggregates.OrderAggregate;
+﻿using OrderMate.Core.Aggregates.EventAggregate;
+using OrderMate.Core.Aggregates.OrderAggregate;
 using OrderMate.Core.Aggregates.ProductAggregate;
 using OrderMate.Core.Aggregates.Users;
 
@@ -11,6 +12,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options,
   public DbSet<User> Users => Set<User>();
   public DbSet<Order> Orders => Set<Order>();
   public DbSet<Product> Products => Set<Product>();
+  public DbSet<StoredEvent> StoredEvents => Set<StoredEvent>();
 
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {

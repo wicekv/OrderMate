@@ -1,6 +1,7 @@
 ﻿using OrderMate.Core.Aggregates.OrderAggregate;
 using OrderMate.Core.Aggregates.UserAggregate.Enums;
 using OrderMate.Core.Aggregates.UserAggregate.ErrorMessages;
+using OrderMate.Core.Aggregates.UserAggregate.Handlers.UserCreated;
 
 namespace OrderMate.Core.Aggregates.Users;
 
@@ -20,6 +21,9 @@ public class User : EntityBase, IAggregateRoot
     Name = Guard.Against.NullOrWhiteSpace(name, nameof(name));
     Email = Guard.Against.NullOrWhiteSpace(email, nameof(email));
     Role = Guard.Against.Null(role, nameof(role));
+
+    var test = new UserCreatedEvent(Id, email, name);
+    base.RegisterDomainEvent(test);
   }
 
   public void PlaceOrder(Order order)
